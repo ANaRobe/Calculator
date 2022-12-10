@@ -25,15 +25,56 @@ function reducer(state, {type, payload}) {
       ...state,
       currentOperand:`${state.currentOperand || ""}${payload.digit}`,
       }
+
     case ACTIONS.CHOOSE_OPERATION:
       if(state.currentOperand == null && state.previousOperand == null) {
         return state
       }
+      if (state.previousOperand == null) {
+        return {
+          ...state,
+          operation:payload.operation,
+          previousOperand: state.currentOperand,
+          currentOperand: null,
+        }
+      }
+
     case ACTIONS.CLEAR:
       return {}
+    
+    case ACTIONS.EVALUATE:
+      return{
+        ...state,
+        previousOperand: null,
+        operation: null,
+        currentOperand: evaluate(state),
+      }
+  }
+}
+
+  function evaluate({ currentOperand, previousOperand, operation}) {
+    const prev = parseFloat(previousOperand)
+    const current = parseFloat(currentOperand)
+    if (isNaN(prev) || isNaN(current)) return ""
+    let result = ""
+    switch (operation) {
+      case "+":
+        result = prev + current
+        break
+      case "-":
+        result = prev - current
+        break
+      case "*":
+        result = prev * current
+        break
+      case "÷":
+        result = prev / current
+          break
   }
 
+  return result.toString()
 }
+
 
 const App = () => {
   const [{currentOperand, previousOperand, operation}, dispatch] = useReducer(reducer, {})
@@ -60,7 +101,7 @@ const App = () => {
             <OperationButton operation="-" dispatch={dispatch} />
             <DigitButton digit="." dispatch={dispatch} />
             <DigitButton digit="0" dispatch={dispatch} />
-            <button className='span-two'>=</button> 
+            <button className='span-two' onClick={() => dispatch({ type: ACTIONS.EVALUATE })}>=</button> 
       </div>
       
 
