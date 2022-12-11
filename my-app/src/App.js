@@ -64,7 +64,15 @@ function reducer(state, {type, payload}) {
         operation: null,
         currentOperand: evaluate(state),
       }
+
+    case ACTIONS.DELETE_DIGIT:
+      return {
+        ...state,
+        currentOperand: state.currentOperand.slice(0, -1)
+      }
   }
+
+
 }
 
   function evaluate({ currentOperand, previousOperand, operation}) {
@@ -99,8 +107,8 @@ const App = () => {
         <div className='previous-operand'>{previousOperand} {operation}</div>
           <div className='current-operand'>{currentOperand}</div>
           </div>
-            <button className='span-two' onClick={() => dispatch({ type: ACTIONS.CLEAR })}>AC</button>
-            <button>DEL</button>
+            <button className='span-two' onClick={() => dispatch({ type: ACTIONS.DELETE_DIGIT })}>AC</button>
+            <button  onClick={() => dispatch({ type: ACTIONS.CLEAR })}>DEL</button>
             <OperationButton operation="÷" dispatch={dispatch} />
             <DigitButton digit="1" dispatch={dispatch} />
             <DigitButton digit="2" dispatch={dispatch} />
