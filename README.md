@@ -6,7 +6,7 @@ This is a simple Calculator for general purposes, a modern app written in React 
 
 This app is designed to showcase the learning outcomes after attending a semester the React Course at ReDi School , being built in React using  JavaScript, CSS and HTML.
 
-View the live website on [Heroku](https://anarobe.github.io/Calculator)
+View the live website on [GitHub Pages](https://anarobe.github.io/Calculator)
 
 Note: To open any links in a new tab, press CTRL + Click
 
@@ -84,7 +84,7 @@ Uith the UX principles in mind, to the buttons colors were offered transparency 
 ### Languages
 * HTML
 * CSS
-* JavaScript
+* JavaScript -React Framework
 
 
 ### Hosting
