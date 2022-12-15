@@ -95,6 +95,7 @@ Uith the UX principles in mind, to the buttons colors were offered transparency 
 
 * Google Dev Tools (including Lighthouse)
 <br>
+
 ![alt text](/docs/Lighthouse-mobile.PNG)
 ![alt text](/docs/Lighthouse-desktop.PNG)
 
